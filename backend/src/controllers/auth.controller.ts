@@ -45,5 +45,4 @@ export const login = async (req: Request, res: Response): Promise<Response<any, 
     res.status(500).json({ message: 'Login failed' });
   }
 };
-// src/middleware/auth.middleware.ts
 

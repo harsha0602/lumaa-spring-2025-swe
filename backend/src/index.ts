@@ -4,6 +4,9 @@ import dotenv from 'dotenv';
 import { register, login } from './controllers/auth.controller';
 import { getTasks, createTask, updateTask, deleteTask } from './controllers/task.controller';
 import { authenticateToken } from './middleware/auth.middleware';
+import { exec } from 'child_process';
+import path from 'path';
+
 
 dotenv.config();
 
@@ -13,7 +16,18 @@ const PORT = process.env.PORT || 8080;
 // Middleware
 app.use(cors());
 app.use(express.json());
-
+const createTablesScript = path.join(__dirname, '../migrations/create_tables.sql');
+exec(`psql -U postgres -d postgres -f ${createTablesScript}`, (error, stdout, stderr) => {
+  if (error) {
+    console.error(`Error executing create_tables.sql: ${error.message}`);
+    return;
+  }
+  if (stderr) {
+    console.error(`stderr: ${stderr}`);
+    return;
+  }
+  console.log(`stdout: ${stdout}`);
+});
 // Public routes for authentication
 app.post('/auth/register', register);
 app.post('/auth/login', login);
