@@ -1,6 +1,9 @@
 # Task Management Application
 
 This repository contains a full-stack task management application built using React + TypeScript (frontend), Node.js (Express) + TypeScript (backend), and PostgreSQL (database).
+# Demo Link
+
+https://www.loom.com/share/bfcda30c8a894eafbf6a4da757ac772b?sid=96658d9d-3053-4b4d-9243-ca4e988d1810
 
 ## Table of Contents
 - [Project Overview](#project-overview)
