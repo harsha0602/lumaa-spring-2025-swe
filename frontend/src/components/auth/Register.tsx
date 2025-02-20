@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 const Register = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
+    const navigate = useNavigate();
+    
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
@@ -13,6 +16,8 @@ const Register = () => {
                 password
             });
             alert('Registration successful');
+            navigate('/login');
+
             // Redirect or perform additional actions
         } catch (error) {
             console.error('Failed to register', error);
